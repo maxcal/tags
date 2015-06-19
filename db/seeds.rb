@@ -29,3 +29,9 @@ $tags = Faker::Lorem.words(200)
 
 end
 
+current_user = User.first
+
+Goal.all.each { |goal| current_user.tag(goal, :with => Faker::Lorem.words, :on => :tags ) }
+
+
+
