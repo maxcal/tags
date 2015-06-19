@@ -1,9 +1,9 @@
 class TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def show
-    @tag = Tag.find(params[:id])
+    @tag = ActsAsTaggableOn::Tag.find(params[:id])
   end
 end
