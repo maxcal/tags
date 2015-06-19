@@ -1,2 +1,9 @@
+%pre= @tags.inspect
+%pre= @special_tags
+
 - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, tag_path(tag), :class => css_class
+
+%p User / Habit tag cloud
+- tag_cloud(@special_tags, %w(css1 css2 css3 css4)) do |tag, css_class|
   = link_to tag.name, tag_path(tag), :class => css_class

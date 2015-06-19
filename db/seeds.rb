@@ -5,3 +5,27 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# So for our tags we use some random Ipsum Loren words.
+# We use this as a kind of shared repostory of tags so that we get overlap
+$tags = Faker::Lorem.words(200)
+
+[User, Goal, Habit, Valuation, Quantified].each do |model|
+  unless model.any?
+    print "Creating 10 #{model.model_name.plural }: "
+    10.times do
+      obj = model.new
+      obj.tag_list.add( $tags.sample(8) )
+      obj.tag_list.add( 'lol')  unless model == User || model == Habit
+      obj.save!
+      print "."
+
+
+
+    end
+    puts "done"
+  end
+
+
+end
+
